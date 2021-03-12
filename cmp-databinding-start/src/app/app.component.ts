@@ -1,28 +1,30 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  serverElements = [];
-  newServerName = '';
-  newServerContent = '';
+  serverElements = [
+    { type: "server", name: "Testserver", content: "Just a test" },
+  ];
+  newServerName = "";
+  newServerContent = "";
 
   onAddServer() {
     this.serverElements.push({
-      type: 'server',
+      type: "server",
       name: this.newServerName,
-      content: this.newServerContent
+      content: this.newServerContent,
     });
   }
 
   onAddBlueprint() {
     this.serverElements.push({
-      type: 'blueprint',
+      type: "blueprint",
       name: this.newServerName,
-      content: this.newServerContent
+      content: this.newServerContent,
     });
   }
 }
