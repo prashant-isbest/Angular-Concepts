@@ -1,23 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
-
-import { AppComponent } from './app.component';
-import { ServerElementComponent } from './server-element/server-element.component';
-import { CockpitComponent } from './cockpit/cockpit.component';
+import { AppComponent } from "./app.component";
+import { ServerElementComponent } from "./server-element/server-element.component";
+import { CockpitComponent } from "./cockpit/cockpit.component";
+import { BasicHighlightDirective } from "./directives/basic-highlight.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerElementComponent,
-    CockpitComponent
+    CockpitComponent,
+    BasicHighlightDirective,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
