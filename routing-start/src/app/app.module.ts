@@ -16,6 +16,7 @@ const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "users", component: UserComponent },
   { path: "servers", component: ServersComponent },
+  { path: "user/:id/:name", component: UserComponent },
 ];
 
 @NgModule({
