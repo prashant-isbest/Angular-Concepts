@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { post } from "./post.model";
 import { map } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
+  errorSubject = new Subject<string>();
   constructor(private http: HttpClient) {}
   createAndStorePost(postData: post) {
     this.http
@@ -12,9 +14,14 @@ export class PostsService {
         "https://http-angular-f8955-default-rtdb.firebaseio.com/post.json",
         postData
       )
-      .subscribe((responeData) => {
-        console.log(responeData);
-      });
+      .subscribe(
+        (responeData) => {
+          console.log(responeData);
+        },
+        (error) => {
+          this.errorSubject.next(error.message);
+        }
+      );
   }
 
   fetchPosts() {
