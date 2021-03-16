@@ -10,7 +10,7 @@ import { post } from "./post.model";
 })
 export class AppComponent implements OnInit {
   loadedPosts = [];
-
+  isFetching = false;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {}
@@ -29,6 +29,15 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     // Send Http request
+    this.fetchPosts();
+  }
+
+  onClearPosts() {
+    // Send Http request
+  }
+
+  private fetchPosts() {
+    this.isFetching = true;
     this.http
       .get<{ [key: string]: post }>(
         "https://http-angular-f8955-default-rtdb.firebaseio.com/post.json"
@@ -43,12 +52,8 @@ export class AppComponent implements OnInit {
         })
       )
       .subscribe((posts) => {
-        console.log(posts[0].id);
-        console.log(posts[0].content);
+        this.isFetching = false;
+        this.loadedPosts = posts;
       });
-  }
-
-  onClearPosts() {
-    // Send Http request
   }
 }
