@@ -1,7 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpEventType,
+  HttpHeaders,
+  HttpParams,
+} from "@angular/common/http";
 import { post } from "./post.model";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
 
 @Injectable({ providedIn: "root" })
@@ -48,8 +53,26 @@ export class PostsService {
   }
 
   deletePost() {
-    return this.http.delete(
-      "https://http-angular-f8955-default-rtdb.firebaseio.com/post.json"
-    );
+    return this.http
+      .delete(
+        "https://http-angular-f8955-default-rtdb.firebaseio.com/post.json",
+        {
+          observe: "events",
+        }
+      )
+      .pipe(
+        tap((event) => {
+          if (event.type == HttpEventType.Sent) {
+            console.log(event);
+            console.log(
+              "preflight options sent woah waiting for the response to come"
+            );
+          }
+          if (event.type == HttpEventType.Response) {
+            console.log(event);
+            console.log("Yeaha!! full respone received");
+          }
+        })
+      );
   }
 }
