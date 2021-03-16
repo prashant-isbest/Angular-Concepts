@@ -12,6 +12,7 @@ import { PostsService } from "./post.service";
 export class AppComponent implements OnInit {
   loadedPosts: post[] = [];
   isFetching: boolean = false;
+  error: {} = null;
   constructor(private http: HttpClient, private postService: PostsService) {}
 
   ngOnInit() {
@@ -30,10 +31,16 @@ export class AppComponent implements OnInit {
   onFetchPosts() {
     // Send Http request
     this.isFetching = true;
-    this.postService.fetchPosts().subscribe((posts) => {
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    });
+    this.postService.fetchPosts().subscribe(
+      (posts) => {
+        this.isFetching = false;
+        this.loadedPosts = posts;
+      },
+      (error) => {
+        console.log(error);
+        this.error = error.message;
+      }
+    );
   }
 
   onClearPosts() {
