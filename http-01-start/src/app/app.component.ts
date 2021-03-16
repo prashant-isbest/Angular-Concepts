@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { post } from "./post.model";
 import { PostsService } from "./post.service";
@@ -9,10 +9,10 @@ import { Subscription } from "rxjs";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: post[] = [];
   isFetching: boolean = false;
-  error: {} = null;
+  error = null;
   private errorSubscription: Subscription;
   constructor(private http: HttpClient, private postService: PostsService) {}
 
@@ -62,5 +62,12 @@ export class AppComponent implements OnInit {
     this.postService.deletePost().subscribe(() => {
       this.loadedPosts = [];
     });
+  }
+
+  onHandleError() {
+    this.error = null;
+  }
+  ngOnDestroy() {
+    this.errorSubscription.unsubscribe();
   }
 }
