@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Routes, RouterModule } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -11,12 +12,14 @@ import { UserComponent } from "./users/user/user.component";
 import { EditServerComponent } from "./servers/edit-server/edit-server.component";
 import { ServerComponent } from "./servers/server/server.component";
 import { ServersService } from "./servers/servers.service";
+import { GarageComponent } from "./garage/garage.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "users", component: UserComponent },
   { path: "servers", component: ServersComponent },
   { path: "users/:id/:name", component: UserComponent },
+  { path: "garage", component: GarageComponent },
 ];
 
 @NgModule({
@@ -28,8 +31,14 @@ const appRoutes: Routes = [
     UserComponent,
     EditServerComponent,
     ServerComponent,
+    GarageComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+  ],
   providers: [ServersService],
   bootstrap: [AppComponent],
 })

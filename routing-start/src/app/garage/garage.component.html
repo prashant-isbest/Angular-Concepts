@@ -1,0 +1,6 @@
+<h3>Cars</h3>
+<button (click)="addCarAndRefreshList()">add a car and refresh list</button>
+<!-- <button (click)="refreshCarList()">refresh list</button> -->
+<ul>
+  <li *ngFor="let car of cars">{{ car.name }} - {{ car.color }}</li>
+</ul>
