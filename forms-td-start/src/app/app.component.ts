@@ -10,6 +10,8 @@ export class AppComponent implements AfterViewInit {
   @ViewChild("inputusername") inputuser: ElementRef;
   @ViewChild("email") email: NgModel;
 
+  answer: string = "";
+
   ngAfterViewInit() {
     this.inputuser.nativeElement.focus();
   }
