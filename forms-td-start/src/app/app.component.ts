@@ -12,6 +12,15 @@ export class AppComponent implements AfterViewInit {
 
   answer: string = "";
 
+  user = {
+    username: "",
+    email: "",
+    question: "",
+    answer: "",
+  };
+
+  submitted = false;
+
   ngAfterViewInit() {
     this.inputuser.nativeElement.focus();
   }
@@ -35,5 +44,10 @@ export class AppComponent implements AfterViewInit {
   onSubmit() {
     console.log(this.signupForm);
     console.log(this.email);
+    this.submitted = true;
+    this.user.username = this.signupForm.value.userdata.username;
+    this.user.email = this.signupForm.value.userdata.email;
+    this.user.question = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
   }
 }
