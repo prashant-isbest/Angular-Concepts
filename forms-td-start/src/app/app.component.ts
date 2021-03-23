@@ -49,5 +49,6 @@ export class AppComponent implements AfterViewInit {
     this.user.email = this.signupForm.value.userdata.email;
     this.user.question = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
+    this.signupForm.reset();
   }
 }
