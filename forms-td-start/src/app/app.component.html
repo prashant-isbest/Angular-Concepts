@@ -15,8 +15,12 @@
               required
             />
           </div>
-          <button class="btn btn-default" type="button">
-            Suggest an Username
+          <button
+            class="btn btn-default"
+            type="button"
+            (click)="suggestUserName()"
+          >
+            suggest username
           </button>
           <div class="form-group">
             <label for="email">Mail</label>

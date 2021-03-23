@@ -17,6 +17,20 @@ export class AppComponent implements AfterViewInit {
   }
   suggestUserName() {
     const suggestedName = "Superuser";
+    // this.signupForm.setValue({
+    //   userdata: {
+    //     username: suggestedName,
+    //     email: "",
+    //   },
+    //   secret: "pet",
+    //   questionAnswer: "",
+    // });
+
+    this.signupForm.form.patchValue({
+      userdata: {
+        username: suggestedName,
+      },
+    });
   }
   onSubmit() {
     console.log(this.signupForm);
